@@ -60,3 +60,9 @@
 {
     margin: 0 0 11px;
 }
+
+.image {
+    height: 250px;
+    width: 348px;
+    overflow: hidden;
+}

@@ -24,18 +24,25 @@ public class Initializer implements ServletContextListener {
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
 
         //setting up a new supplier
-        Supplier amazon = new Supplier("Amazon", "Digital content and services");
-        supplierDataStore.add(amazon);
-        Supplier lenovo = new Supplier("Lenovo", "Computers");
-        supplierDataStore.add(lenovo);
+        Supplier catFarm = new Supplier("Catfarm", "Cute and healthy cats.");
+        supplierDataStore.add(catFarm);
+        Supplier shelter = new Supplier("Shelter", "Best furry friends.");
+        supplierDataStore.add(shelter);
+        Supplier horseRanch = new Supplier("HorseRanch", "Beautiful stallions.");
+        Supplier budapestZoo = new Supplier("Budapest Zoo", "Home of exotic animals from all over the world.");
 
         //setting up a new product category
-        ProductCategory tablet = new ProductCategory("Tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        productCategoryDataStore.add(tablet);
+        ProductCategory heartbreak = new ProductCategory("Heartbreak", "Depression", "A mental state when you are sad, for example after a breakup.");
+        productCategoryDataStore.add(heartbreak);
+        ProductCategory gift = new ProductCategory("Gift", "Celebration", "When you feel like giving a pet as a gift is a good idea. (But it's actually not!)");
+        productCategoryDataStore.add(gift);
 
         //setting up products and printing it
-        productDataStore.add(new Product("Amazon Fire", 49.9f, "USD", "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", tablet, amazon));
-        productDataStore.add(new Product("Lenovo IdeaPad Miix 700", 479, "USD", "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", tablet, lenovo));
-        productDataStore.add(new Product("Amazon Fire HD 8", 89, "USD", "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", tablet, amazon));
+        productDataStore.add(new Product("Cat", 49.9f, "USD", "Fantastic price. Helpful emotional support. A little bit selfish.", heartbreak, catFarm));
+        productDataStore.add(new Product("Dog", 479, "USD", "A true friend. (S)he will love you the best. Amazing emotional support.", heartbreak, shelter));
+        productDataStore.add(new Product("Bunny", 89, "USD", "A great furry friend. Good for support.", heartbreak, shelter));
+        productDataStore.add(new Product("Horse", 55.8f, "USD", "Because why not?", gift, horseRanch));
+        productDataStore.add(new Product("Capuchin Monkey", 45, "USD", "An exotic gift.", gift, budapestZoo));
+        productDataStore.add(new Product("Walrus", 63.6f, "USD", "Gives good hugs.", gift, budapestZoo));
     }
 }
