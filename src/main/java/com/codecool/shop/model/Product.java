@@ -6,8 +6,8 @@ public class Product extends BaseModel {
 
     private float defaultPrice;
     private Currency defaultCurrency;
-    private ProductCategory productCategory;
-    private Supplier supplier;
+    transient private ProductCategory productCategory;
+    transient private Supplier supplier;
 
 
     public Product(String name, float defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
