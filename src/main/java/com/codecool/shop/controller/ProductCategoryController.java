@@ -32,12 +32,12 @@ public class ProductCategoryController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        String currentProductCategoryString = req.getQueryString();
-        ProductCategory currentProductCategory = null;
+        String currentProductCategoryId = req.getQueryString();
+        ProductCategory ProductCategory = null;
 
         for (ProductCategory productCat : productCategoryDataStore.getAll() ) {
-            if (productCat.getName().equals(currentProductCategoryString)) {
-                currentProductCategory = productCat;
+            if (productCat.getId() == Integer.parseInt(currentProductCategoryId)) {
+                ProductCategory = productCat;
             }
         }
 
@@ -45,7 +45,7 @@ public class ProductCategoryController extends HttpServlet {
 
         Map<String, Object> params = new HashMap<>();
         params.put("category", productCategoryDataStore.getAll());
-        params.put("products", productDataStore.getBy(currentProductCategory));
+        params.put("products", productDataStore.getBy(ProductCategory));
 
         Object productListToJson = params.get("products");
 

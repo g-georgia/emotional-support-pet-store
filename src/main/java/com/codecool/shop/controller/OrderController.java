@@ -23,11 +23,11 @@ public class OrderController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         OrderDaoMem orderDataStore = OrderDaoMem.getInstance();
         ProductDao productDataStore = ProductDaoMem.getInstance();
-        String currentProductString = req.getQueryString();
+        String currentProductId = req.getQueryString();
         OrderItem selectedProduct = null;
 
         for (Product product : productDataStore.getAll() ) {
-            if (product.getName().equals(currentProductString)) {
+            if (product.getId() == Integer.parseInt(currentProductId)) {
                 selectedProduct =  new OrderItem(product);
             }
         }

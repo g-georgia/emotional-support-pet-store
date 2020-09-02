@@ -41,14 +41,14 @@
     <div class="card">
         <strong>Select by Product Category:</strong>
         <div th:each="categ,iterStat : ${category}">
-        <strong class="productCategory" th:text="${categ.name}">Category Title</strong>
+        <strong class="productCategory" th:id="${categ.id}" th:text="${categ.name}">Category Title</strong>
         </div>
     </div>
 
     <div class="card">
         <strong>Select by Product Supplier:</strong>
         <div th:each="supplier,iterStat : ${suppliers}">
-            <strong class="supplier" th:text="${supplier.name}">Supplier Title</strong>
+            <strong class="supplier" th:id="${supplier.id}" th:text="${supplier.name}">Supplier Title</strong>
         </div>
     </div>
 
