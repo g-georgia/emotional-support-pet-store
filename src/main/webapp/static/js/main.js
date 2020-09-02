@@ -14,6 +14,58 @@ function addEventListeners() {
         button.addEventListener("click", getSelectedProduct)
 
     }
+
+    const productCategoryFilter = document.querySelector(".filter-product-category")
+    productCategoryFilter.addEventListener("click", showProductCategories);
+    productCategoryFilter.addEventListener("mouseover", changeBackgroundColorBlack);
+    productCategoryFilter.addEventListener("mouseout", changeBackgroundColorWhite);
+
+    const supplierFilter = document.querySelector(".filter-supplier")
+    supplierFilter.addEventListener("click", showSuppliers);
+    supplierFilter.addEventListener("mouseover", changeBackgroundColorBlack);
+    supplierFilter.addEventListener("mouseout", changeBackgroundColorWhite);
+}
+
+function changeBackgroundColorBlack() {
+    this.style.backgroundColor = "black";
+    this.style.color = "white";
+
+}
+
+function changeBackgroundColorWhite() {
+    this.style.backgroundColor = "white";
+    this.style.color = "black";
+}
+
+function showSuppliers() {
+    let options = document.querySelectorAll(".hidden-supplier");
+    if (options.length !== 0) {
+        for (let option of options) {
+            option.classList.remove("hidden-supplier");
+        }
+    } else {
+        let optionsToHide = document.querySelectorAll(".supplier-options");
+        for (let option of optionsToHide) {
+            option.classList.add("hidden-supplier");
+        }
+    }
+
+}
+
+function showProductCategories() {
+    let options = document.querySelectorAll(".hidden-category");
+    if (options.length !== 0) {
+        for (let option of options) {
+            option.classList.remove("hidden-category");
+        }
+    } else {
+        let optionsToHide = document.querySelectorAll(".product-category");
+        for (let option of optionsToHide) {
+            option.classList.add("hidden-category");
+        }
+    }
+
+
 }
 
 function getProductsToSupplier() {
