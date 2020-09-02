@@ -17,16 +17,16 @@ function addEventListeners() {
 }
 
 function getProductsToSupplier() {
-    let supplier = this.innerHTML;
-    fetch(`/supplier?${supplier}`)
+    let supplierId = this.id;
+    fetch(`/supplier?${supplierId}`)
         .then(response => response.json())
         .then(productsToList => buildDom(productsToList))
 }
 
 
 function getProductsToProductCategory() {
-    let productCategory = this.innerHTML;
-    fetch(`/product-category?${productCategory}`)
+    let productCategoryId = this.id;
+    fetch(`/product-category?${productCategoryId}`)
         .then(response => response.json())
         .then(productsToList => buildDom(productsToList))
 }
@@ -39,7 +39,7 @@ function buildDom(productsToList) {
                 <div class="card">
                     <img class="image" src="/static/img/product_${product.id}.jpg" alt="${product.name}" />
                     <div class="card-header">
-                        <h4 class="card-title">${product.name}</h4>
+                        <h4 class="card-title" id="${product.id}">${product.name}</h4>
                         <p class="card-text">${product.description}</p>
                     </div>
                     <div class="card-body">
@@ -67,8 +67,8 @@ function buildDom(productsToList) {
 
 function getSelectedProduct() {
     this.classList.add("hasEventListener");
-    let selectedElement = this.parentElement.parentElement.parentElement.children[1].children[0].innerText;
-    fetch(`/order/product?${selectedElement}`)
+    let selectedElementId = this.parentElement.parentElement.parentElement.children[1].children[0].id;
+    fetch(`/order/product?${selectedElementId}`)
         .then(response => response.json())
         .then(orderList => something(orderList))
 }

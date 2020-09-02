@@ -36,11 +36,11 @@ public class SupplierController extends HttpServlet {
         ProductDao productDataStore = ProductDaoMem.getInstance();
         SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
         //ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        String currentSupplierString = req.getQueryString();
+        String currentSupplierId = req.getQueryString();
         Supplier currentSupplier = null;
 
         for (Supplier supplier : supplierDataStore.getAll() ) {
-            if (supplier.getName().equals(currentSupplierString)) {
+            if (supplier.getId() == Integer.parseInt(currentSupplierId)) {
                 currentSupplier = supplier;
             }
         }
