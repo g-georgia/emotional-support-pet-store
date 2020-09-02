@@ -67,6 +67,7 @@
     overflow: hidden;
 }
 
-.productCategory {
+.productCategory, .supplier{
     cursor: pointer;
 }
+

@@ -45,6 +45,13 @@
         </div>
     </div>
 
+    <div class="card">
+        <strong>Select by Product Supplier:</strong>
+        <div th:each="supplier,iterStat : ${suppliers}">
+            <strong class="supplier" th:text="${supplier.name}">Supplier Title</strong>
+        </div>
+    </div>
+
     <div id="products" class="row">
         <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
             <div class="card">
