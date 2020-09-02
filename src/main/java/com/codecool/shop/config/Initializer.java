@@ -43,7 +43,7 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Dog", 479, "USD", "A true friend. (S)he will love you the best. Amazing emotional support.", heartbreak, shelter));
         productDataStore.add(new Product("Bunny", 89, "USD", "A great furry friend. Good for support.", heartbreak, shelter));
         productDataStore.add(new Product("Horse", 55.8f, "USD", "Because why not?", gift, horseRanch));
-        productDataStore.add(new Product("Capuchin Monkey", 45, "USD", "An exotic gift.", gift, budapestZoo));
+        productDataStore.add(new Product("CapuchinMonkey", 45, "USD", "An exotic gift.", gift, budapestZoo));
         productDataStore.add(new Product("Walrus", 63.6f, "USD", "Gives good hugs.", gift, budapestZoo));
     }
 }
