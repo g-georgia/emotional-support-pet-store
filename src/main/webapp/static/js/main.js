@@ -1,4 +1,3 @@
-
 function addEventListeners() {
     const productCategories = document.querySelectorAll(".productCategory");
     for (let productCategory of productCategories) {
@@ -8,6 +7,12 @@ function addEventListeners() {
     const suppliers = document.querySelectorAll(".supplier");
     for (let supplier of suppliers) {
         supplier.addEventListener("click", getProductsToSupplier);
+    }
+
+    const addToCartButtons = document.querySelectorAll(".btn.btn-success");
+    for (let button of addToCartButtons) {
+        button.addEventListener("click", getSelectedProduct)
+
     }
 }
 
@@ -48,10 +53,28 @@ function buildDom(productsToList) {
                 </div>
             </div>`
 
-        products+=productDetails;
+        products += productDetails;
     }
-    document.querySelector("#products").innerHTML=products;
+    document.querySelector("#products").innerHTML = products;
+    const addToCartButtons = document.querySelectorAll(".btn.btn-success");
+    for (let button of addToCartButtons) {
+        if (!(button.classList.contains("hasEventListener"))) {
+            button.addEventListener("click", getSelectedProduct)
+        }
 
+    }
+}
+
+function getSelectedProduct() {
+    this.classList.add("hasEventListener");
+    let selectedElement = this.parentElement.parentElement.parentElement.children[1].children[0].innerText;
+    fetch(`/order/product?${selectedElement}`)
+        .then(response => response.json())
+        .then(orderList => something(orderList))
+}
+
+function something(orderList) {
+    console.log(orderList);
 }
 
 addEventListeners();
