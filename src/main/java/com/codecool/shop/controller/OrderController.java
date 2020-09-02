@@ -48,7 +48,6 @@ public class OrderController extends HttpServlet {
 
         Map<String, Object> params = new HashMap<>();
         params.put("products", orderDataStore.getAll());
-
         Object productListToJson = params.get("products");
 
         Gson gson = new Gson();
