@@ -4,7 +4,20 @@ function addEventListeners() {
     for (let productCategory of productCategories) {
         productCategory.addEventListener("click", getProductsToProductCategory);
     }
+
+    const suppliers = document.querySelectorAll(".supplier");
+    for (let supplier of suppliers) {
+        supplier.addEventListener("click", getProductsToSupplier);
+    }
 }
+
+function getProductsToSupplier() {
+    let supplier = this.innerHTML;
+    fetch(`/supplier?${supplier}`)
+        .then(response => response.json())
+        .then(productsToList => buildDom(productsToList))
+}
+
 
 function getProductsToProductCategory() {
     let productCategory = this.innerHTML;

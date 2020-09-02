@@ -2,11 +2,14 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.dao.ProductCategoryDao;
 import com.codecool.shop.dao.ProductDao;
+import com.codecool.shop.dao.SupplierDao;
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.gson.Gson;
@@ -25,32 +28,33 @@ import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.util.*;
 
-@WebServlet(urlPatterns = {"/product-category"})
-public class ProductCategoryEndpoint extends HttpServlet {
+@WebServlet(urlPatterns = {"/supplier"})
+public class SupplierController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductDao productDataStore = ProductDaoMem.getInstance();
-        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
-        String currentProductCategoryString = req.getQueryString();
-        ProductCategory currentProductCategory = null;
+        SupplierDao supplierDataStore = SupplierDaoMem.getInstance();
+        //ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
+        String currentSupplierString = req.getQueryString();
+        Supplier currentSupplier = null;
 
-        for (ProductCategory productCat : productCategoryDataStore.getAll() ) {
-            if (productCat.getName().equals(currentProductCategoryString)) {
-                currentProductCategory = productCat;
+        for (Supplier supplier : supplierDataStore.getAll() ) {
+            if (supplier.getName().equals(currentSupplierString)) {
+                currentSupplier = supplier;
             }
         }
 
         PrintWriter out = resp.getWriter();
 
         Map<String, Object> params = new HashMap<>();
-        params.put("category", productCategoryDataStore.getAll());
-        params.put("products", productDataStore.getBy(currentProductCategory));
+        params.put("supplier", supplierDataStore.getAll());
+        params.put("products", productDataStore.getBy(currentSupplier));
 
-        Object test = params.get("products");
+        Object productListToJson = params.get("products");
 
         Gson gson = new Gson();
-        String json = gson.toJson(test);
+        String json = gson.toJson(productListToJson);
 
         out.println(json);
 

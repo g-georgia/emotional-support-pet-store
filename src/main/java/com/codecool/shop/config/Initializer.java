@@ -29,8 +29,9 @@ public class Initializer implements ServletContextListener {
         Supplier shelter = new Supplier("Shelter", "Best furry friends.");
         supplierDataStore.add(shelter);
         Supplier horseRanch = new Supplier("HorseRanch", "Beautiful stallions.");
-        Supplier budapestZoo = new Supplier("Budapest Zoo", "Home of exotic animals from all over the world.");
-
+        supplierDataStore.add(horseRanch);
+        Supplier budapestZoo = new Supplier("BudapestZoo", "Home of exotic animals from all over the world.");
+        supplierDataStore.add(budapestZoo);
         //setting up a new product category
         ProductCategory heartbreak = new ProductCategory("Heartbreak", "Depression", "A mental state when you are sad, for example after a breakup.");
         productCategoryDataStore.add(heartbreak);
