@@ -67,9 +67,14 @@
     overflow: hidden;
 }
 
-.productCategory, .supplier{
+.productCategory, .supplier, .filter-product-category, .filter-supplier{
     cursor: pointer;
 }
+
+.hidden-category, .hidden-supplier {
+    display: none;
+}
+
 
 
 
