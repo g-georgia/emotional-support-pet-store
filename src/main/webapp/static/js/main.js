@@ -39,31 +39,35 @@ function changeBackgroundColorWhite() {
     this.style.color = "black";
 }
 
-function showSuppliers() {
+function showSuppliers(event) {
     let options = document.querySelectorAll(".hidden-supplier");
     if (options.length !== 0) {
         for (let option of options) {
             option.classList.remove("hidden-supplier");
+            event.target.removeEventListener("mouseout", changeBackgroundColorWhite)
         }
     } else {
         let optionsToHide = document.querySelectorAll(".supplier-options");
         for (let option of optionsToHide) {
             option.classList.add("hidden-supplier");
+            event.target.addEventListener("mouseout", changeBackgroundColorWhite)
         }
     }
 
 }
 
-function showProductCategories() {
-    let options = document.querySelectorAll(".hidden-category");
+function showProductCategories(event) {
+        let options = document.querySelectorAll(".hidden-category");
     if (options.length !== 0) {
         for (let option of options) {
             option.classList.remove("hidden-category");
+            event.target.removeEventListener("mouseout", changeBackgroundColorWhite)
         }
     } else {
         let optionsToHide = document.querySelectorAll(".product-category");
         for (let option of optionsToHide) {
             option.classList.add("hidden-category");
+            event.target.addEventListener("mouseout", changeBackgroundColorWhite)
         }
     }
 
