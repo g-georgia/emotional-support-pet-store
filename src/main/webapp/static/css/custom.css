@@ -111,5 +111,6 @@
     min-width: 350px;
 }
 
-
-
+.col-lg-4{
+    min-width: 370px;
+}
