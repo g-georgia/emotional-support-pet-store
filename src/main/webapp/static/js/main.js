@@ -140,7 +140,7 @@ function changeCartContent(orderList) {
         let orderDetails = `
                             <div>
                                 <p>Name: ${order.name}</p>
-                                <p>Quantity: ${order.quantity} <button type="button" class="btn btn-primary btn-sm plus" id="plus">+</button> <button type="button" class="btn btn-primary btn-sm minus" id="minus">-</button></p>
+                                <p>Quantity: ${order.quantity} <button type="button" class="btn btn-success btn-sm plus" id="plus">+</button> <button type="button" class="btn btn-success btn-sm minus" id="minus">-</button></p>
                                 <p>Price per unit: ${order.defaultPrice}</p>
                                 <p>Subtotal price: ${order.subtotalPrice}</p>
                             </div>
@@ -160,10 +160,6 @@ function changeCartContent(orderList) {
     for (let button of minusButtons) {
         button.addEventListener("click", decreaseProductNumber);
     }
-
-
-
-
 
 }
 

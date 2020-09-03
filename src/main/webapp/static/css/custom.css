@@ -85,8 +85,13 @@
     display: grid;
 }
 
+.dropdown-container {
+    position: absolute;
+    left: 15px;
+}
+
 .site-content {
-    display: inline-flex;
+    /*display: inline-flex;*/
 }
 
 .cart-item-number {
@@ -107,10 +112,21 @@
     width: 175px;
 }
 
-.card {
-    min-width: 350px;
+/*.card {*/
+/*    min-width: 350px;*/
+/*}*/
+
+/*.col-lg-4{*/
+/*    min-width: 370px;*/
+/*}*/
+/*.jumbotron {*/
+/*    background-image: url("/static/img/banner.png");*/
+/*}*/
+
+#banner {
+    width: 100%;
 }
 
-.col-lg-4{
-    min-width: 370px;
+.jumbotron {
+    padding: 20px;
 }
