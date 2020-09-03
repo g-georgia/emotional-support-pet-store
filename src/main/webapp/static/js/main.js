@@ -11,7 +11,8 @@ function addEventListeners() {
 
     const addToCartButtons = document.querySelectorAll(".btn.btn-success");
     for (let button of addToCartButtons) {
-        button.addEventListener("click", getSelectedProduct)
+        button.addEventListener("click", getSelectedProduct);
+
     }
 
 
@@ -123,7 +124,7 @@ function buildDom(productsToList) {
     }
 }
 
-function getSelectedProduct() {
+function getSelectedProduct(e) {
     this.classList.add("hasEventListener");
     let selectedElementId = this.parentElement.parentElement.parentElement.children[1].children[0].id;
     fetch(`/order/product?${selectedElementId}`)
@@ -135,25 +136,41 @@ function changeCartContent(orderList) {
     console.log(orderList);
     let numOfCartItems = 0;
     let modalContent = "";
+    let totalPrice = 0;
+    let currency = "";
     for (let order of orderList) {
         numOfCartItems += order.quantity;
+        totalPrice += order.subtotalPrice;
         let orderDetails = `
-                            <div>
+                            <div class="${order.name}">
                                 <p>Name: ${order.name}</p>
-                                <p>Quantity: ${order.quantity} <button type="button" class="btn btn-success btn-sm plus" id="plus">+</button> <button type="button" class="btn btn-success btn-sm minus" id="minus">-</button></p>
+                                <p>Quantity: ${order.quantity} <button type="button" class="btn btn-success btn-sm plus" id="plus" data-buttonId="${order.id}">+</button> <button type="button" class="btn btn-success btn-sm minus" id="minus">-</button></p>
                                 <p>Price per unit: ${order.defaultPrice}</p>
-                                <p>Subtotal price: ${order.subtotalPrice}</p>
+                                <p>Subtotal price: ${order.subtotalPrice} ${order.defaultCurrency}</p>  
+                                <hr>                        
                             </div>
                             `;
         modalContent += orderDetails;
+        currency = order.defaultCurrency;
+
     }
+
+    modalContent += `
+                    <div>
+                        <strong><p>Total: ${totalPrice} ${currency}</p></strong>
+                    </div>
+                    `;
+
 
     let modal = document.querySelector(".modal-body");
     modal.innerHTML = modalContent;
     document.querySelector(".cart-item-number").innerText = numOfCartItems;
     let plusButtons = document.querySelectorAll(".plus");
     for (let button of plusButtons) {
-        button.addEventListener("click", increaseProductNumber);
+        button.addEventListener("click", (event)=> {
+            console.log(this.name);
+            increaseProductNumber(orderList);
+        });
     }
 
     let minusButtons = document.querySelectorAll(".minus");
@@ -163,8 +180,15 @@ function changeCartContent(orderList) {
 
 }
 
-function increaseProductNumber() {
+function increaseProductNumber(orderList) {
     alert("plus");
+    let newQuantity = 0;
+    let newSubtotalPrice = 0;
+    let newTotalPrice = 0;
+    // for (let item of orderList) {
+    //
+    // }
+
 }
 
 function decreaseProductNumber() {
