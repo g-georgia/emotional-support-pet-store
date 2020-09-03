@@ -37,36 +37,63 @@
     <h1>Emotional Support Animal Shop</h1>
 </div>
 
-<div class="container">
-    <div class="card">
-        <strong class="filter-product-category">Select by Product Category</strong>
-        <div class="hidden-category product-category" th:each="categ,iterStat : ${category}">
-        <strong class="productCategory" th:id="${categ.id}" th:text="${categ.name}">Category Title</strong>
-        </div>
-    </div>
+<div class="site-content">
 
-    <div class="card">
-        <strong class="filter-supplier">Select by Product Supplier</strong>
-        <div class="hidden-supplier supplier-options" th:each="supplier,iterStat : ${suppliers}">
-            <strong class="supplier" th:id="${supplier.id}" th:text="${supplier.name}">Supplier Title</strong>
-        </div>
+    <div class="cart">
+        <span class="btn btn-light" data-toggle="modal" data-target="#exampleModal3" ><img class="cart-icon" src="/static/img/cart.png"></span><span class="cart-item-number">Empty!</span>
     </div>
+    <div class="container">
+        <div class="card">
+            <strong class="filter-product-category">Select by Product Category</strong>
+            <div class="hidden-category product-category" th:each="categ,iterStat : ${category}">
+            <strong class="productCategory" th:id="${categ.id}" th:text="${categ.name}">Category Title</strong>
+            </div>
+        </div>
 
-    <div id="products" class="row">
-        <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
-            <div class="card">
-                <img class="image" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
-                <div class="card-header">
-                    <h4 class="card-title" th:text="${prod.name}">Product name</h4>
-                    <p class="card-text" th:text="${prod.description}">Product description... </p>
+        <div class="card">
+            <strong class="filter-supplier">Select by Product Supplier</strong>
+            <div class="hidden-supplier supplier-options" th:each="supplier,iterStat : ${suppliers}">
+                <strong class="supplier" th:id="${supplier.id}" th:text="${supplier.name}">Supplier Title</strong>
+            </div>
+        </div>
+
+        <div id="products" class="row">
+            <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
+                <div class="card">
+                    <img class="image" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
+                    <div class="card-header">
+                        <h4 class="card-title" th:id="${prod.id}" th:text="${prod.name}">Product name</h4>
+                        <p class="card-text" th:text="${prod.description}">Product description... </p>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
+                        </div>
+                        <div class="card-text">
+                            <a class="btn btn-success" href="#">Add to cart</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="card-text">
-                        <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
-                    </div>
-                    <div class="card-text">
-                        <a class="btn btn-success" href="#">Add to cart</a>
-                    </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal3Label">Cart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    The cart is empty! Woof!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Go to checkout</button>
                 </div>
             </div>
         </div>

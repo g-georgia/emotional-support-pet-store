@@ -24,7 +24,9 @@ function addEventListeners() {
     supplierFilter.addEventListener("click", showSuppliers);
     supplierFilter.addEventListener("mouseover", changeBackgroundColorBlack);
     supplierFilter.addEventListener("mouseout", changeBackgroundColorWhite);
+
 }
+
 
 function changeBackgroundColorBlack() {
     this.style.backgroundColor = "black";
@@ -103,7 +105,7 @@ function buildDom(productsToList) {
                         </div>
                     </div>
                 </div>
-            </div>`
+            </div>`;
 
         products += productDetails;
     }
@@ -122,11 +124,32 @@ function getSelectedProduct() {
     let selectedElementId = this.parentElement.parentElement.parentElement.children[1].children[0].id;
     fetch(`/order/product?${selectedElementId}`)
         .then(response => response.json())
-        .then(orderList => something(orderList))
+        .then(orderList => changeCartContent(orderList))
 }
 
-function something(orderList) {
+function changeCartContent(orderList) {
     console.log(orderList);
+    let numOfCartItems = 0;
+    let modalContent = "";
+    for (let order of orderList) {
+        numOfCartItems += order.quantity;
+        let orderDetails = `
+                            <div>
+                                <p>Name: ${order.name}</p>
+                                <p>Quantity: ${order.quantity}</p>
+                                <p>Price per unit: ${order.defaultPrice}</p>
+                                <p>Subtotal price: ${order.subtotalPrice}</p>
+                            </div>
+                            `;
+        modalContent+=orderDetails;
+    }
+
+    document.querySelector(".cart-item-number").innerText = numOfCartItems;
+
+    let modal = document.querySelector(".modal-body");
+    modal.innerHTML = modalContent;
+
+
 }
 
 addEventListeners();

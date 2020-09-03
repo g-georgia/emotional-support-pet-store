@@ -67,7 +67,7 @@
     overflow: hidden;
 }
 
-.productCategory, .supplier, .filter-product-category, .filter-supplier{
+.productCategory, .supplier, .filter-product-category, .filter-supplier, .cart-icon {
     cursor: pointer;
 }
 
@@ -75,6 +75,28 @@
     display: none;
 }
 
+.cart-icon {
+    max-height: 100px;
+}
+
+.cart {
+    flex-wrap: wrap;
+    contain: size;
+    display: flow-root;
+}
+
+.site-content {
+    display: flex;
+}
+
+.cart-item-number {
+    font-size: revert;
+    margin-left: 65px;
+    font-family: system-ui;
+    border: solid 1px darkgreen;
+    padding: 1px 6px 1px 6px;
+    border-radius: 5px;
+}
 
 
 
