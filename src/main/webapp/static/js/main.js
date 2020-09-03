@@ -15,65 +15,7 @@ function addEventListeners() {
 
     }
 
-
-    /* const productCategoryFilter = document.querySelector(".filter-product-category")
-     productCategoryFilter.addEventListener("click", showProductCategories);
-     productCategoryFilter.addEventListener("mouseover", changeBackgroundColorBlack);
-     productCategoryFilter.addEventListener("mouseout", changeBackgroundColorWhite);
-
-     const supplierFilter = document.querySelector(".filter-supplier")
-     supplierFilter.addEventListener("click", showSuppliers);
-     supplierFilter.addEventListener("mouseover", changeBackgroundColorBlack);
-     supplierFilter.addEventListener("mouseout", changeBackgroundColorWhite);*/
-
 }
-
-
-/*function changeBackgroundColorBlack() {
-    this.style.backgroundColor = "black";
-    this.style.color = "white";
-
-}
-
-function changeBackgroundColorWhite() {
-    this.style.backgroundColor = "white";
-    this.style.color = "black";
-}*/
-
-/*function showSuppliers(event) {
-    let options = document.querySelectorAll(".hidden-supplier");
-    if (options.length !== 0) {
-        for (let option of options) {
-            option.classList.remove("hidden-supplier");
-            event.target.removeEventListener("mouseout", changeBackgroundColorWhite)
-        }
-    } else {
-        let optionsToHide = document.querySelectorAll(".supplier-options");
-        for (let option of optionsToHide) {
-            option.classList.add("hidden-supplier");
-            event.target.addEventListener("mouseout", changeBackgroundColorWhite)
-        }
-    }
-
-}*/
-
-/*function showProductCategories(event) {
-        let options = document.querySelectorAll(".hidden-category");
-    if (options.length !== 0) {
-        for (let option of options) {
-            option.classList.remove("hidden-category");
-            event.target.removeEventListener("mouseout", changeBackgroundColorWhite)
-        }
-    } else {
-        let optionsToHide = document.querySelectorAll(".product-category");
-        for (let option of optionsToHide) {
-            option.classList.add("hidden-category");
-            event.target.addEventListener("mouseout", changeBackgroundColorWhite)
-        }
-    }
-
-
-}*/
 
 function getProductsToSupplier() {
     let supplierId = this.id;
@@ -118,7 +60,7 @@ function buildDom(productsToList) {
     const addToCartButtons = document.querySelectorAll(".btn.btn-success");
     for (let button of addToCartButtons) {
         if (!(button.classList.contains("hasEventListener"))) {
-            button.addEventListener("click", getSelectedProduct)
+            button.addEventListener("click", getSelectedProduct);
         }
 
     }
@@ -144,7 +86,10 @@ function changeCartContent(orderList) {
         let orderDetails = `
                             <div class="${order.name}">
                                 <p>Name: ${order.name}</p>
-                                <p>Quantity: ${order.quantity} <button type="button" class="btn btn-success btn-sm plus" id="plus" data-buttonId="${order.id}">+</button> <button type="button" class="btn btn-success btn-sm minus" id="minus">-</button></p>
+                                <p>Quantity: ${order.quantity} 
+                                    <button type="button" class="btn btn-success btn-sm plus" id="plus" data-orderId="${order.id}">+</button>
+                                    <button type="button" class="btn btn-success btn-sm minus" id="minus" data-orderId="${order.id}">-</button>
+                                </p>
                                 <p>Price per unit: ${order.defaultPrice}</p>
                                 <p>Subtotal price: ${order.subtotalPrice} ${order.defaultCurrency}</p>  
                                 <hr>                        
@@ -165,34 +110,43 @@ function changeCartContent(orderList) {
     let modal = document.querySelector(".modal-body");
     modal.innerHTML = modalContent;
     document.querySelector(".cart-item-number").innerText = numOfCartItems;
+
+
     let plusButtons = document.querySelectorAll(".plus");
     for (let button of plusButtons) {
-        button.addEventListener("click", (event)=> {
-            console.log(this.name);
-            increaseProductNumber(orderList);
-        });
+        if (!(button.classList.contains("hasEventListener"))) {
+            button.classList.add("hasEventListener");
+            button.addEventListener("click", (event)=> {
+                let orderId = event.target.getAttribute("data-orderId");
+                increaseProductNumber(orderId);
+            });
+        }
+
     }
 
     let minusButtons = document.querySelectorAll(".minus");
     for (let button of minusButtons) {
-        button.addEventListener("click", decreaseProductNumber);
+        if (!(button.classList.contains("hasEventListener"))) {
+            button.classList.add("hasEventListener");
+            button.addEventListener("click", (event)=> {
+                let orderId = event.target.getAttribute("data-orderId");
+                decreaseProductNumber(orderId);
+            });
+        }
     }
 
 }
 
-function increaseProductNumber(orderList) {
-    alert("plus");
-    let newQuantity = 0;
-    let newSubtotalPrice = 0;
-    let newTotalPrice = 0;
-    // for (let item of orderList) {
-    //
-    // }
-
+function increaseProductNumber(orderId) {
+    fetch(`/order/product-to-increase?${orderId}`)
+        .then(response => response.json())
+        .then(newOrderList => changeCartContent(newOrderList))
 }
 
-function decreaseProductNumber() {
-    alert("minus");
+function decreaseProductNumber(orderId) {
+    fetch(`/order/product-to-decrease?${orderId}`)
+        .then(response => response.json())
+        .then(newOrderList => changeCartContent(newOrderList))
 }
 
 addEventListeners();

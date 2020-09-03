@@ -13,4 +13,14 @@ public class OrderItem extends Product {
         subtotalPrice = product.getDefaultPrice();
         OrderItemId =product.getId();
     }
+
+    public void increaseOrder(){
+        this.quantity += 1;
+        this.subtotalPrice = this.quantity*this.getDefaultPrice();
+    }
+
+    public void decreaseOrder(){
+        this.quantity -= 1;
+        this.subtotalPrice = this.quantity*this.getDefaultPrice();
+    }
 }

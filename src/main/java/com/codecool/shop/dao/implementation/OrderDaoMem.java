@@ -42,6 +42,26 @@ public class OrderDaoMem implements OrderDao {
         return orderList;
     }
 
+    public void increaseOrderItem(String orderId) {
+        for (int i=0; i < orderList.size(); i++ ) {
+            if (orderList.get(i).getId() == Integer.parseInt(orderId)) {
+                orderList.get(i).increaseOrder();
+            }
+        }
+    }
+
+    public void decreaseOrderItem(String orderId) {
+        for (int i=0; i < orderList.size(); i++ ) {
+            if (orderList.get(i).getId() == Integer.parseInt(orderId)) {
+                orderList.get(i).decreaseOrder();
+                if (orderList.get(i).quantity <= 0) {
+                    orderList.remove(orderList.get(i));
+                }
+            }
+        }
+
+    }
+
 
 
 
