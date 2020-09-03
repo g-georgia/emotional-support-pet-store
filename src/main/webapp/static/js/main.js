@@ -12,18 +12,18 @@ function addEventListeners() {
     const addToCartButtons = document.querySelectorAll(".btn.btn-success");
     for (let button of addToCartButtons) {
         button.addEventListener("click", getSelectedProduct)
-
     }
 
-   /* const productCategoryFilter = document.querySelector(".filter-product-category")
-    productCategoryFilter.addEventListener("click", showProductCategories);
-    productCategoryFilter.addEventListener("mouseover", changeBackgroundColorBlack);
-    productCategoryFilter.addEventListener("mouseout", changeBackgroundColorWhite);
 
-    const supplierFilter = document.querySelector(".filter-supplier")
-    supplierFilter.addEventListener("click", showSuppliers);
-    supplierFilter.addEventListener("mouseover", changeBackgroundColorBlack);
-    supplierFilter.addEventListener("mouseout", changeBackgroundColorWhite);*/
+    /* const productCategoryFilter = document.querySelector(".filter-product-category")
+     productCategoryFilter.addEventListener("click", showProductCategories);
+     productCategoryFilter.addEventListener("mouseover", changeBackgroundColorBlack);
+     productCategoryFilter.addEventListener("mouseout", changeBackgroundColorWhite);
+
+     const supplierFilter = document.querySelector(".filter-supplier")
+     supplierFilter.addEventListener("click", showSuppliers);
+     supplierFilter.addEventListener("mouseover", changeBackgroundColorBlack);
+     supplierFilter.addEventListener("mouseout", changeBackgroundColorWhite);*/
 
 }
 
@@ -140,20 +140,39 @@ function changeCartContent(orderList) {
         let orderDetails = `
                             <div>
                                 <p>Name: ${order.name}</p>
-                                <p>Quantity: ${order.quantity}</p>
+                                <p>Quantity: ${order.quantity} <button type="button" class="btn btn-primary btn-sm plus" id="plus">+</button> <button type="button" class="btn btn-primary btn-sm minus" id="minus">-</button></p>
                                 <p>Price per unit: ${order.defaultPrice}</p>
                                 <p>Subtotal price: ${order.subtotalPrice}</p>
                             </div>
                             `;
-        modalContent+=orderDetails;
+        modalContent += orderDetails;
     }
-
-    document.querySelector(".cart-item-number").innerText = numOfCartItems;
 
     let modal = document.querySelector(".modal-body");
     modal.innerHTML = modalContent;
+    document.querySelector(".cart-item-number").innerText = numOfCartItems;
+    let plusButtons = document.querySelectorAll(".plus");
+    for (let button of plusButtons) {
+        button.addEventListener("click", increaseProductNumber);
+    }
+
+    let minusButtons = document.querySelectorAll(".minus");
+    for (let button of minusButtons) {
+        button.addEventListener("click", decreaseProductNumber);
+    }
 
 
+
+
+
+}
+
+function increaseProductNumber() {
+    alert("plus");
+}
+
+function decreaseProductNumber() {
+    alert("minus");
 }
 
 addEventListeners();
