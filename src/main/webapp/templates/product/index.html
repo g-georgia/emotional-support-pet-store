@@ -42,20 +42,43 @@
     <div class="cart">
         <span class="btn btn-light" data-toggle="modal" data-target="#exampleModal3" ><img class="cart-icon" src="/static/img/cart.png"></span><span class="cart-item-number">Empty!</span>
     </div>
+    <div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle"
+                    type="button" id="dropdownMenu1" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                Product Category
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <a th:each="categ,iterStat : ${category}" class="dropdown-item productCategory" href="#!" th:id="${categ.id}" th:text="${categ.name}">Category Title</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle"
+                    type="button" id="dropdownMenu2" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                Product Supplier
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <a th:each="supplier,iterStat : ${suppliers}" class="dropdown-item supplier" href="#!" th:id="${supplier.id}" th:text="${supplier.name}">Supplier Title</a>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <div class="card">
+       <!--<div class="card">
             <strong class="filter-product-category">Select by Product Category</strong>
             <div class="hidden-category product-category" th:each="categ,iterStat : ${category}">
             <strong class="productCategory" th:id="${categ.id}" th:text="${categ.name}">Category Title</strong>
             </div>
-        </div>
+        </div>-->
 
-        <div class="card">
+        <!--<div class="card">
             <strong class="filter-supplier">Select by Product Supplier</strong>
             <div class="hidden-supplier supplier-options" th:each="supplier,iterStat : ${suppliers}">
                 <strong class="supplier" th:id="${supplier.id}" th:text="${supplier.name}">Supplier Title</strong>
             </div>
-        </div>
+        </div>-->
 
         <div id="products" class="row">
             <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">

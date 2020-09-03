@@ -15,7 +15,7 @@ function addEventListeners() {
 
     }
 
-    const productCategoryFilter = document.querySelector(".filter-product-category")
+   /* const productCategoryFilter = document.querySelector(".filter-product-category")
     productCategoryFilter.addEventListener("click", showProductCategories);
     productCategoryFilter.addEventListener("mouseover", changeBackgroundColorBlack);
     productCategoryFilter.addEventListener("mouseout", changeBackgroundColorWhite);
@@ -23,12 +23,12 @@ function addEventListeners() {
     const supplierFilter = document.querySelector(".filter-supplier")
     supplierFilter.addEventListener("click", showSuppliers);
     supplierFilter.addEventListener("mouseover", changeBackgroundColorBlack);
-    supplierFilter.addEventListener("mouseout", changeBackgroundColorWhite);
+    supplierFilter.addEventListener("mouseout", changeBackgroundColorWhite);*/
 
 }
 
 
-function changeBackgroundColorBlack() {
+/*function changeBackgroundColorBlack() {
     this.style.backgroundColor = "black";
     this.style.color = "white";
 
@@ -37,9 +37,9 @@ function changeBackgroundColorBlack() {
 function changeBackgroundColorWhite() {
     this.style.backgroundColor = "white";
     this.style.color = "black";
-}
+}*/
 
-function showSuppliers(event) {
+/*function showSuppliers(event) {
     let options = document.querySelectorAll(".hidden-supplier");
     if (options.length !== 0) {
         for (let option of options) {
@@ -54,9 +54,9 @@ function showSuppliers(event) {
         }
     }
 
-}
+}*/
 
-function showProductCategories(event) {
+/*function showProductCategories(event) {
         let options = document.querySelectorAll(".hidden-category");
     if (options.length !== 0) {
         for (let option of options) {
@@ -72,7 +72,7 @@ function showProductCategories(event) {
     }
 
 
-}
+}*/
 
 function getProductsToSupplier() {
     let supplierId = this.id;

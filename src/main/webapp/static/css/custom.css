@@ -80,13 +80,13 @@
 }
 
 .cart {
-    flex-wrap: wrap;
-    contain: size;
-    display: flow-root;
+    position: absolute;
+    right: 15px;
+    display: grid;
 }
 
 .site-content {
-    display: flex;
+    display: inline-flex;
 }
 
 .cart-item-number {
@@ -96,6 +96,19 @@
     border: solid 1px darkgreen;
     padding: 1px 6px 1px 6px;
     border-radius: 5px;
+    text-align: center;
+}
+
+.dropdown {
+    margin: 2px;
+}
+
+.dropdown-toggle {
+    width: 175px;
+}
+
+.card {
+    min-width: 350px;
 }
 
 
