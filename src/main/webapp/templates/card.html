@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Please fill your card data</title>
+    <title>Payment</title>
     <link rel="stylesheet" type="text/css" href="static/css/card.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
@@ -16,15 +16,11 @@
     <!--Latest compiled and minified Popper -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-
     <!-- Latest compiled and minified CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- End of Bootstrap components -->
+    <script src="https://kit.fontawesome.com/b97e509c20.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="/static/js/card.js" defer></script>
 </head>
@@ -43,15 +39,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a data-toggle="pill" href="#nav-tab-paypal" class="nav-link rounded-pill">
+                        <a data-toggle="pill" href="/paypal" class="nav-link rounded-pill">
                             <i class="fa fa-paypal"></i>
                             Paypal
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a data-toggle="pill" href="#nav-tab-bank" class="nav-link rounded-pill">
-                            <i class="fa fa-university"></i>
-                            Bank Transfer
                         </a>
                     </li>
                 </ul>
@@ -61,7 +51,7 @@
 
                     <!-- credit card info-->
                     <div id="nav-tab-card" class="tab-pane fade show active">
-                        <p class="alert alert-success" id="alert-box">Some text success or error</p>
+<!--                        <p class="alert alert-success" id="alert-box">Some text success or error</p>-->
                         <form role="form">
                             <div class="form-group">
                                 <label for="username">Full name (on the card)</label>
@@ -100,38 +90,9 @@
                                 </div>
 
                             </div>
-                            <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" id="confirmation-button"> Confirm  </button>
+                            <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" id="confirmation-button" onclick="window.location.href='/order-confirmation'"> Confirm  </button>
                         </form>
                     </div>
-
-<!--                    &lt;!&ndash; Paypal info &ndash;&gt;-->
-<!--                    <div id="nav-tab-paypal" class="tab-pane fade">-->
-<!--                        <p>Paypal is easiest way to pay online</p>-->
-<!--                        <p>-->
-<!--                            <button type="button" class="btn btn-primary rounded-pill"><i class="fa fa-paypal mr-2"></i> Log into my Paypal</button>-->
-<!--                        </p>-->
-<!--                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.-->
-<!--                        </p>-->
-<!--                    </div>-->
-
-<!--                    &lt;!&ndash; bank transfer info &ndash;&gt;-->
-<!--                    <div id="nav-tab-bank" class="tab-pane fade">-->
-<!--                        <h6>Bank account details</h6>-->
-<!--                        <dl>-->
-<!--                            <dt>Bank</dt>-->
-<!--                            <dd> THE WORLD BANK</dd>-->
-<!--                        </dl>-->
-<!--                        <dl>-->
-<!--                            <dt>Account number</dt>-->
-<!--                            <dd>7775877975</dd>-->
-<!--                        </dl>-->
-<!--                        <dl>-->
-<!--                            <dt>IBAN</dt>-->
-<!--                            <dd>CZ7775877975656</dd>-->
-<!--                        </dl>-->
-<!--                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.-->
-<!--                        </p>-->
-<!--                    </div>-->
                 </div>
 
             </div>
