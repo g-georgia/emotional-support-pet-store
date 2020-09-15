@@ -1,0 +1,29 @@
+.rounded-lg {
+    border-radius: 1rem;
+}
+
+.nav-pills .nav-link {
+    color: #555;
+}
+
+.nav-pills .nav-link.active.rounded-pill {
+    background-color: #666;
+}
+
+.subscribe.btn {
+    background-color: #666;
+    border-color: #666;
+}
+
+.btn-primary {
+    border-color: #666;
+}
+
+.subscribe.btn:hover {
+    background-color: black;
+    border-color: black;
+}
+
+.hidden {
+    display: none;
+}
