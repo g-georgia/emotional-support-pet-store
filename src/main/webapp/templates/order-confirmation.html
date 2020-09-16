@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Confirmation</title>
+    <link rel="stylesheet" type="text/css" href="static/css/order-confirmation.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+<h2>Details of your order</h2>
+<p class="alert alert-success" id="alert-box">Payment successful.</p>
+<table class="table table-striped" id="details-table">
+    <thead>
+    <tr id="head-row">
+        <th scope="col">Product ID</th>
+        <th scope="col">Name</th>
+        <th class="right-aligned" scope="col">Quantity</th>
+        <th class="right-aligned" scope="col">Unit Price</th>
+        <th class="right-aligned" scope="col">Total Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+    <tr th:each="order,iterStat : ${orders}">
+        <th scope="row" th:text="${order.id}"></th>
+        <td th:text="${order.name}"></td>
+        <td class="right-aligned" th:text="${order.quantity}"></td>
+        <td class="right-aligned" th:text="${order.defaultPrice}  + ' ' + ${order.defaultCurrency}"></td>
+        <td class="right-aligned" th:text="${#numbers.formatDecimal(order.subtotalPrice, 3, 'WHITESPACE', 2, 'POINT')} + ' ' + ${order.defaultCurrency}"></td>
+    </tr>
+
+
+    <tr id="sum-row">
+        <th scope="row">Total paid:</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="right-aligned"th:text="${#numbers.formatDecimal(total, 3, 'WHITESPACE', 2, 'POINT')} + ' ' + ${currency}"></td>
+    </tr>
+    </tbody>
+</table>
+<div id="thank-you">
+    <p>Thank You for choosing our service!</p>
+    <img src="static/img/heart.jpg" id="heart-img">
+</div>
+</div>
+</body>
+</html>
