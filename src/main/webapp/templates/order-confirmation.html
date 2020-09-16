@@ -30,6 +30,13 @@
     </tr>
 
 
+    <tr id="sum-row">
+        <th scope="row">Total paid:</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="right-aligned"th:text="${#numbers.formatDecimal(total, 3, 'WHITESPACE', 2, 'POINT')} + ' ' + ${currency}"></td>
+    </tr>
     </tbody>
 </table>
 <div id="thank-you">

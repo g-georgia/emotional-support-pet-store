@@ -23,6 +23,11 @@ h2 {
     color: white;
 }
 
+#sum-row {
+    background-color: antiquewhite;
+    color: darkred;
+    font-weight: bold;
+}
 
 .right-aligned {
     text-align: right;

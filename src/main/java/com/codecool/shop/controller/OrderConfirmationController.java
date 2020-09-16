@@ -24,6 +24,14 @@ public class OrderConfirmationController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         context.setVariable("orders", orderDataStore.getAll());
+        double total=0;
+        Currency currency = null;
+        for (OrderItem orderItem : orderDataStore.getAll()) {
+            total += orderItem.subtotalPrice;
+            currency = orderItem.getDefaultCurrency();
+        }
+        context.setVariable("total", total);
+        context.setVariable("currency", currency);
         engine.process("order-confirmation.html", context, resp.getWriter());
 
     }
