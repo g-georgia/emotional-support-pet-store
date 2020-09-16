@@ -8,6 +8,25 @@ h2 {
     padding: 50px;
 }
 
+#details-table {
+    position: relative;
+    top: 50px;
+    width: 80%;
+    margin: auto;
+    border-color: #ccc;
+    border-width: 1px;
+    border-style: solid;
+}
+
+#head-row{
+    background-color: #666666;
+    color: white;
+}
+
+
+.right-aligned {
+    text-align: right;
+}
 
 #thank-you{
     justify-content: center;
