@@ -30,7 +30,7 @@ public class OrderDaoMem implements OrderDao {
         for ( OrderItem lineItem : orderList ) {
             if (lineItem.getName().equals(product.getName())) {
                 lineItem.quantity += 1;
-                lineItem.subtotalPrice = lineItem.quantity * lineItem.getDefaultPrice();
+                lineItem.subtotalPrice = (float) (Math.round((lineItem.quantity * lineItem.getDefaultPrice())*100.0)/100.0);
                 return;
             }
         }
