@@ -12,9 +12,21 @@ function addEventListeners() {
     const addToCartButtons = document.querySelectorAll(".btn.btn-success");
     for (let button of addToCartButtons) {
         button.addEventListener("click", getSelectedProduct);
-
     }
 
+    const checkBox = document.getElementById("same-address");
+    checkBox.addEventListener("click", shippingAddressIsBillingAddress);
+
+}
+
+function shippingAddressIsBillingAddress() {
+    const billingAddress = document.getElementById("billing-address");
+
+    if (!this.checked){
+        billingAddress.style.display = "block";
+    } else {
+        billingAddress.style.display = "none";
+    }
 }
 
 function getProductsToSupplier() {
@@ -82,7 +94,7 @@ function changeCartContent(orderList) {
     let currency = "";
     for (let order of orderList) {
         numOfCartItems += order.quantity;
-        totalPrice += order.subtotalPrice;
+        totalPrice += Math.round(order.subtotalPrice*100.0)/100.0;
         let orderDetails = `
                             <div class="${order.name}">
                                 <p>Name: ${order.name}</p>
@@ -91,7 +103,7 @@ function changeCartContent(orderList) {
                                     <button type="button" class="btn btn-success btn-sm minus" id="minus" data-orderId="${order.id}">-</button>
                                 </p>
                                 <p>Price per unit: ${order.defaultPrice}</p>
-                                <p>Subtotal price: ${order.subtotalPrice} ${order.defaultCurrency}</p>  
+                                <p>Subtotal price: ${Math.round(order.subtotalPrice*100.0)/100.0} ${order.defaultCurrency}</p>  
                                 <hr>                        
                             </div>
                             `;
@@ -102,7 +114,7 @@ function changeCartContent(orderList) {
 
     modalContent += `
                     <div>
-                        <strong><p>Total: ${totalPrice} ${currency}</p></strong>
+                        <strong><p>Total: ${totalPrice.toFixed(2)} ${currency}</p></strong>
                     </div>
                     `;
 
