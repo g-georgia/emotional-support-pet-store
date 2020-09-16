@@ -120,7 +120,7 @@
                 <div class="card">
 
                     <!--Card content-->
-                    <form class="card-body">
+                    <form class="card-body" action="/payment">
 
                         <!--Grid row-->
                         <div class="row">
@@ -246,10 +246,7 @@
                             <!--address-2-->
                             <div class="md-form mb-5">
                                 <label for="address-2" class=""><strong>Billing Address</strong></label>
-                                <input type="text" id="address-2" class="form-control" placeholder="Apartment or suite" required>
-                                <div class="invalid-feedback">
-                                    Valid billing address is required.
-                                </div>
+                                <input type="text" id="address-2" class="form-control" placeholder="Apartment or suite">
                             </div>
 
                             <!--Grid row-->
@@ -259,7 +256,7 @@
                                 <div class="col-lg-4 col-md-12 mb-4">
 
                                     <label for="country">Country</label>
-                                    <select class="custom-select d-block w-100" id="country" required>
+                                    <select class="custom-select d-block w-100" id="country">
                                         <option value="">Choose...</option>
                                         <option>United States</option>
                                         <option>Hungary</option>
@@ -267,9 +264,6 @@
                                         <option>Romania</option>
                                         <option>Neverland</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please select a valid country.
-                                    </div>
 
                                 </div>
                                 <!--Grid column-->
@@ -278,16 +272,13 @@
                                 <div class="col-lg-4 col-md-6 mb-4">
 
                                     <label for="state">State</label>
-                                    <select class="custom-select d-block w-100" id="state" required>
+                                    <select class="custom-select d-block w-100" id="state">
                                         <option value="">Choose...</option>
                                         <option>Pest</option>
                                         <option>Zala</option>
                                         <option>Bivalybasznad</option>
                                         <option>Mariaborzaszto</option>
                                     </select>
-                                    <div class="invalid-feedback">
-                                        Please provide a valid state.
-                                    </div>
 
                                 </div>
                                 <!--Grid column-->
@@ -295,11 +286,8 @@
                                 <!--Grid column-->
                                 <div class="col-lg-4 col-md-6 mb-4">
 
-                                    <label for="zip">Zip</label>
-                                    <input type="text" class="form-control" id="zip" placeholder="" required>
-                                    <div class="invalid-feedback">
-                                        Zip code required.
-                                    </div>
+                                    <label for="zip2">Zip</label>
+                                    <input type="text" class="form-control" id="zip2" placeholder="">
 
                                 </div>
                                 <!--Grid column-->
@@ -369,7 +357,7 @@
 <!--                            </div>-->
 <!--                        </div>-->
                         <hr class="mb-4">
-                        <button class="btn btn-success btn-lg btn-block" onclick="window.location.href='/payment';">Continue to payment</button>
+                        <button class="btn btn-success btn-lg btn-block" type="submit">Continue to payment</button>
 
                     </form>
 
