@@ -96,15 +96,18 @@ function changeCartContent(orderList) {
         numOfCartItems += order.quantity;
         totalPrice += Math.round(order.subtotalPrice*100.0)/100.0;
         let orderDetails = `
-                            <div class="${order.name}">
-                                <p>Name: ${order.name}</p>
-                                <p>Quantity: ${order.quantity} 
-                                    <button type="button" class="btn btn-success btn-sm plus" id="plus" data-orderId="${order.id}">+</button>
-                                    <button type="button" class="btn btn-success btn-sm minus" id="minus" data-orderId="${order.id}">-</button>
-                                </p>
-                                <p>Price per unit: ${order.defaultPrice}</p>
-                                <p>Subtotal price: ${Math.round(order.subtotalPrice*100.0)/100.0} ${order.defaultCurrency}</p>  
-                                <hr>                        
+                            <div class="item-box">
+                                <div class="${order.name}">
+                                    <p>Name: ${order.name}</p>
+                                    <img class="image-cart" src="/static/img/product_${order.id}.jpg" alt=""/>
+                                    <p>Quantity: ${order.quantity} 
+                                        <button type="button" class="btn btn-success btn-sm plus" id="plus" data-orderId="${order.id}">+</button>
+                                        <button type="button" class="btn btn-success btn-sm minus" id="minus" data-orderId="${order.id}">-</button>
+                                    </p>
+                                    <p>Price per unit: ${order.defaultPrice}</p>
+                                    <p>Subtotal price: ${Math.round(order.subtotalPrice*100.0)/100.0} ${order.defaultCurrency}</p>  
+                                    <hr>                        
+                                </div> 
                             </div>
                             `;
         modalContent += orderDetails;
