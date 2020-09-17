@@ -130,3 +130,15 @@
 .jumbotron {
     padding: 20px;
 }
+
+
+.image-cart{
+    width: 100px;
+    height: 67px;
+    float: right;
+    position: relative;
+}
+
+.item-box{
+    overflow: auto;
+}
