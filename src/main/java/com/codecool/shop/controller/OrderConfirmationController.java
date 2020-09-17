@@ -4,9 +4,11 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.model.OrderItem;
+
 import com.google.gson.Gson;
 import org.json.JSONObject;
 import org.json.simple.JSONArray;
+
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -15,14 +17,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Currency;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 
 @WebServlet(urlPatterns = {"/order-confirmation"})
 public class OrderConfirmationController extends HttpServlet {
@@ -42,6 +44,7 @@ public class OrderConfirmationController extends HttpServlet {
         context.setVariable("total", total);
         context.setVariable("currency", currency);
         engine.process("order-confirmation.html", context, resp.getWriter());
+
 
 
         writeFileToJSON(orderDataStore);
