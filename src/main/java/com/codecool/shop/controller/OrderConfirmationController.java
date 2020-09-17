@@ -34,6 +34,12 @@ public class OrderConfirmationController extends HttpServlet {
         context.setVariable("currency", currency);
         engine.process("order-confirmation.html", context, resp.getWriter());
 
+        clearCart(orderDataStore);
     }
 
+
+
+    private void clearCart(OrderDao order){
+        order.getAll().clear();
+    }
 }
