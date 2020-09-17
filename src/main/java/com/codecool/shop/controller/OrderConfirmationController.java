@@ -47,7 +47,31 @@ public class OrderConfirmationController extends HttpServlet {
         engine.process("order-confirmation.html", context, resp.getWriter());
 
         writeFileToJSON(orderDataStore);
-      
+
+        String emailBody = ("<h1>Emotional Support Pet Store</h1>" +
+                "<p><b>Thank you for your order, here are all your details:</b></p>" +
+                "<table style=\"width:50%; border: 1px solid black;\">\n" +
+                "  <tr style=\"border: 1px solid black;\">\n" +
+                "    <th style=\"border: 1px solid black;\">ID</th>\n" +
+                "    <th style=\"border: 1px solid black;\">Name</th>\n" +
+                "    <th style=\"border: 1px solid black;\">Quantity</th>\n" +
+                "    <th style=\"border: 1px solid black;\">Price</th>\n" +
+                "    <th style=\"border: 1px solid black;\">Description</th>\n" +
+                "  </tr>");
+        for (OrderItem orderItem : orderDataStore.getAll()) {
+            emailBody += "<tr>\n" +
+                    "    <td style=\"border: 1px solid black;\">" + orderItem.getId() + "</td>\n" +
+                    "    <td style=\"border: 1px solid black;\">" + orderItem.getName() + "</td>\n" +
+                    "    <td style=\"border: 1px solid black;\">" + orderItem.quantity + "</td>\n" +
+                    "    <td style=\"border: 1px solid black;\">" + orderItem.subtotalPrice + "</td>\n" +
+                    "    <td style=\"border: 1px solid black;\">" + orderItem.getDescription() + "</td>\n" +
+                    "  </tr>";
+        }
+        emailBody += "</table>";
+
+        String recipient = "kristof910@gmail.com"; // delete
+        EmailController.sendEmail(recipient, emailBody);
+
         clearCart(orderDataStore);
     }
 
