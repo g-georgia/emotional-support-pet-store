@@ -46,3 +46,11 @@ h2 {
     top: 10px;
     align-content: center;
 }
+
+#cont-shopping {
+    position: relative;
+    top: 50px;
+    width: 20%;
+    align-content: center;
+    margin: auto;
+}

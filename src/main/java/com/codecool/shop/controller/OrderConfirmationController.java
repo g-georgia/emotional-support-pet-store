@@ -41,13 +41,14 @@ public class OrderConfirmationController extends HttpServlet {
             total += orderItem.subtotalPrice;
             currency = orderItem.getDefaultCurrency();
         }
+      
         context.setVariable("total", total);
         context.setVariable("currency", currency);
         engine.process("order-confirmation.html", context, resp.getWriter());
 
-
-
         writeFileToJSON(orderDataStore);
+      
+        clearCart(orderDataStore);
     }
 
     private void writeFileToJSON(OrderDao order) {
@@ -74,4 +75,7 @@ public class OrderConfirmationController extends HttpServlet {
         }
     }
 
+    private void clearCart(OrderDao order){
+        order.getAll().clear();
+    }
 }
