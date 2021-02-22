@@ -11,19 +11,23 @@ We created a dynamic web page in `Java` with `servlets`. Database was not used, 
 
 On the index page you can see the pets of the default category. 
 
-![esp-index](https://user-images.githubusercontent.com/57525123/108702669-deea8900-7509-11eb-9f83-719020f24915.png)
+<img src ="https://user-images.githubusercontent.com/57525123/108702669-deea8900-7509-11eb-9f83-719020f24915.png">
 
 You can see title, description and price below the images.
 
-![esp-card](https://user-images.githubusercontent.com/57525123/108702759-faee2a80-7509-11eb-8711-9ecf28f4b136.png)
+<p align="center">
+<img src ="https://user-images.githubusercontent.com/57525123/108702759-faee2a80-7509-11eb-8711-9ecf28f4b136.png">
+</p>
 
 You can filter the support pets by category or supplier. 
 
 You can put pets into your shopping cart, change the quantities, see the total price of your selected items.
-![esp-checkout](https://user-images.githubusercontent.com/57525123/108703025-57514a00-750a-11eb-8cf4-b041b9d93952.png)
+<p align="center">
+  <img src ="https://user-images.githubusercontent.com/57525123/108703025-57514a00-750a-11eb-8cf4-b041b9d93952.png">
+</p>
 
 After filling a pseudo payment form you also can view the order of your details.
-![esp-details](https://user-images.githubusercontent.com/57525123/108703113-78b23600-750a-11eb-8544-dfeb29857c29.png)
+<img src ="https://user-images.githubusercontent.com/57525123/108703113-78b23600-750a-11eb-8544-dfeb29857c29.png">
 
 ## Starting the application
 This is a maven project, so pom.xml will install all the dependencies you need in order to run this application.
