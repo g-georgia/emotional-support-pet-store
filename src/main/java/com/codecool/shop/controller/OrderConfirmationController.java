@@ -5,7 +5,6 @@ import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.implementation.OrderDaoMem;
 import com.codecool.shop.model.OrderItem;
 
-import com.google.gson.Gson;
 import org.json.JSONObject;
 import org.json.simple.JSONArray;
 
@@ -21,9 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Currency;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 @WebServlet(urlPatterns = {"/order-confirmation"})

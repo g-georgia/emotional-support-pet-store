@@ -70,19 +70,6 @@
         </div>
     </div>
     <div class="container">
-       <!--<div class="card">
-            <strong class="filter-product-category">Select by Product Category</strong>
-            <div class="hidden-category product-category" th:each="categ,iterStat : ${category}">
-            <strong class="productCategory" th:id="${categ.id}" th:text="${categ.name}">Category Title</strong>
-            </div>
-        </div>-->
-
-        <!--<div class="card">
-            <strong class="filter-supplier">Select by Product Supplier</strong>
-            <div class="hidden-supplier supplier-options" th:each="supplier,iterStat : ${suppliers}">
-                <strong class="supplier" th:id="${supplier.id}" th:text="${supplier.name}">Supplier Title</strong>
-            </div>
-        </div>-->
 
         <div id="products" class="row">
             <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
