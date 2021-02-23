@@ -67,8 +67,5 @@ public class Initializer implements ServletContextListener {
         productDataStore.add(new Product("Otter", 87.99f,"USD","There is just no any OTTER than this little guy. Will fill the hole in your heart for sure!", heartbreak, shelter));
         productDataStore.add(new Product("Micro Pig", 30.99f,"USD","It's like a pig but very small. Will heal your body, mind and soul at once.", nervousBreakdown, shelter));
         productDataStore.add(new Product("Corgi", 44.99f,"USD","His fluffy butt will make you forget all your problems.", anxiety, shelter));
-
-
-
     }
 }
