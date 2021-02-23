@@ -36,8 +36,9 @@ This is a maven project, so pom.xml will install all the dependencies you need i
 mvn install
 ```
 command in terminal in the root directory of the project. 
-2. Set up the configuration in your IDE: to comman line field enter: 
+
+2. Set up the configuration in your IDE: to comman line field enter the jetty run command along with e-mail account credentials, which is used to send confirmation e-mail. In case your e-mail account applies 2-factor authentication, you need to create an Application Password for running this application.
 ```
-jetty:run
+jetty:run -Demail=<email> -Dpassword=<password>
 ```
 3. Start running the application and visit your `http://localhost:8080/` to see the `index` page.
