@@ -38,13 +38,14 @@ public class OrderConfirmationController extends HttpServlet {
             total += orderItem.subtotalPrice;
             currency = orderItem.getDefaultCurrency();
         }
-      
+
+        writeFileToJSON(orderDataStore);
+        String email = (String) req.getSession().getAttribute("user_email");
+        sendEmail(email, orderDataStore, currency);
+
         context.setVariable("total", total);
         context.setVariable("currency", currency);
         engine.process("order-confirmation.html", context, resp.getWriter());
-
-        writeFileToJSON(orderDataStore);
-        sendEmail(orderDataStore, currency);
         clearCart(orderDataStore);
     }
 
@@ -76,7 +77,7 @@ public class OrderConfirmationController extends HttpServlet {
         order.getAll().clear();
     }
 
-    private void sendEmail(OrderDao orderDataStore, Currency currency){
+    private void sendEmail(String recipient, OrderDao orderDataStore, Currency currency){
         String emailBody = ("<h1>Emotional Support Pet Store</h1>" +
                 "<p><b>Thank you for your order, here are all your details:</b></p>" +
                 "<table style=\"width:50%; border: 1px solid black;\">\n" +
@@ -100,7 +101,6 @@ public class OrderConfirmationController extends HttpServlet {
         }
         emailBody += "</table>";
 
-        String recipient = "georgia.colt.phoenix@gmail.com"; // delete
         EmailController.sendEmail(recipient, emailBody);
     }
 }
