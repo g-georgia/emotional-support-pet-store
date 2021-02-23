@@ -12,11 +12,13 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailController {
     public static void sendEmail(String recipient, String emailBody) {
+        String emailAddress = System.getProperty("email");
+        String emailPassword = System.getProperty("password");
         // Recipient's email ID needs to be mentioned.
         String to = recipient;
 
         // Sender's email ID needs to be mentioned
-        String from = "codecoolshoponline@gmail.com";
+        String from = emailAddress;
 
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
@@ -35,7 +37,7 @@ public class EmailController {
 
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication("codecoolshoponline@gmail.com", "Qwert123Qwert123");
+                return new PasswordAuthentication(emailAddress, emailPassword);
 
             }
 
