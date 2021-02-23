@@ -68,6 +68,8 @@ public class EmailController {
             System.out.println("Sent message successfully....");
         } catch (MessagingException mex) {
             mex.printStackTrace();
+            System.out.println("Email address or password invalid or missing. Please check and modify credentials.");
+            System.out.println("In case of two-factor authenticated e-mail account, please generate and use Application Password instead of login password.");
         }
     }
 }
