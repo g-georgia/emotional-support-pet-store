@@ -6,42 +6,60 @@
     <link rel="stylesheet" type="text/css" href="static/css/card.css">
     <link rel="stylesheet" type="text/css" href="static/css/order-confirmation.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        h2 {
+            text-align: center;
+            padding: 50px;
+        }
+    </style>
 </head>
 <body>
 <h1>Emotional Support Pet Store</h1>
 <p><b>Thank you for your order, here are all your details:</b></p>
 
-<table class="table">
+<table class="table" style="
+    position: relative;
+    top: 50px;
+    width: 80%;
+    margin: auto;
+    border-color: #ccc;
+    border-width: 1px;
+    border-style: solid;">
     <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Price</th>
-        <th scope="col">Subtotal</th>
+    <tr style="background-color: #666666; color: white;">
+        <th style="padding: .75rem; vertical-align: top; border-top: 1px solid #dee2e6; width: 10px;" scope="col">ID</th>
+        <th style="padding: .75rem; vertical-align: top; border-top: 1px solid #dee2e6" scope="col">Name</th>
+        <th style="padding: .75rem; vertical-align: top; border-top: 1px solid #dee2e6; width: 100px;" scope="col">Quantity</th>
+        <th style="padding: .75rem; vertical-align: top; border-top: 1px solid #dee2e6; width: 100px;" scope="col">Price</th>
+        <th style="padding: .75rem; vertical-align: top; border-top: 1px solid #dee2e6; width: 100px;" scope="col">Subtotal</th>
     </tr>
     </thead>
     <tbody>
         <tr th:each="order,iterStat : ${orderDetails.orders}">
-            <th scope="row" th:text="${order.id}"></th>
-            <td th:text="${order.name}"></td>
-            <td class="right-aligned" th:text="${order.quantity}"></td>
-            <td class="right-aligned" th:text="${order.defaultPrice}  + ' ' + ${order.defaultCurrency}"></td>
-            <td class="right-aligned" th:text="${#numbers.formatDecimal(order.subtotalPrice, 3, 'WHITESPACE', 2, 'POINT')} + ' ' + ${order.defaultCurrency}"></td>
+            <th style="padding: .75rem; vertical-align: top; border-top: 1px solid #dee2e6; width: 10px;"
+                scope="row" th:text="${order.id}"></th>
+            <td style="padding: .75rem; vertical-align: top; border-top: 1px solid #dee2e6"
+                th:text="${order.name}"></td>
+            <td style="text-align: right; padding: .75rem; vertical-align: top; border-top: 1px solid #dee2e6; width: 100px;"
+                th:text="${order.quantity}"></td>
+            <td style="text-align: right; padding: .75rem; vertical-align: top; border-top: 1px solid #dee2e6; width: 100px;"
+                th:text="${order.defaultPrice}  + ' ' + ${order.defaultCurrency}"></td>
+            <td style="text-align: right; padding: .75rem; vertical-align: top; border-top: 1px solid #dee2e6; width: 100px;"
+                th:text="${#numbers.formatDecimal(order.subtotalPrice, 3, 'WHITESPACE', 2, 'POINT')} + ' ' + ${order.defaultCurrency}"></td>
         </tr>
-        <tr id="sum-row">
-            <th scope="row">Total paid:</th>
+        <tr id="sum-row" style="background-color: antiquewhite; color: darkred; font-weight: bold;">
+            <th scope="row"></th>
+            <td>Total paid:</td>
             <td></td>
             <td></td>
-            <td></td>
-            <td class="right-aligned"th:text="${#numbers.formatDecimal(orderDetails.total, 3, 'WHITESPACE', 2, 'POINT')} + ' ' + ${orderDetails.currency}"></td>
+            <td style="text-align: right;"
+                th:text="${#numbers.formatDecimal(orderDetails.total, 3, 'WHITESPACE', 2, 'POINT')} + ' ' + ${orderDetails.currency}"></td>
         </tr>
     </tbody>
-
+</table>
     <div id="thank-you">
         <p>Thank You for choosing our service!</p>
-        <img src="static/img/heart.jpg" id="heart-img">
     </div>
-</table>
+
 </body>
 </html>
