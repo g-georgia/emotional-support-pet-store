@@ -5,7 +5,7 @@
 In Codecool we had a task to create a webshop of an arbitrary topic. We choose Emotional Support Pets, because we love animals and think that mental well-being and social support is very important. Please consider that this project was made only for practicing programming techniques. We highly respect animal rights and don't consider pets as products.
 
 ## Technical details
-We created a dynamic web page in `Java` with `servlets`. Database was not used, only in memory storage with `DAO` design pattern to store data. In order to get data from backend, `Thymeleaf` templating engine was used.
+We created a dynamic web page in `Java` with `servlets`. Database was not used, only in memory storage with `DAO` design pattern to store data. In order to get data from backend, `Thymeleaf` templating engine was used. This application does not apply security or login system.
 
 ## The site
 
@@ -28,6 +28,10 @@ You can put pets into your shopping cart, change the quantities, see the total p
 
 After filling a pseudo payment form you also can view the order of your details.
 <img src ="https://user-images.githubusercontent.com/57525123/108703113-78b23600-750a-11eb-8544-dfeb29857c29.png">
+
+The application also sends an e-mail to the given e-mail address with the order details.
+
+<img src ="https://user-images.githubusercontent.com/57525123/109060533-cafb7e80-76e5-11eb-859d-416992afd3db.png">
 
 ## Starting the application
 This is a maven project, so pom.xml will install all the dependencies you need in order to run this application.
