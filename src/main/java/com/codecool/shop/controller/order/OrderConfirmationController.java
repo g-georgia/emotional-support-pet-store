@@ -4,6 +4,7 @@ import com.codecool.shop.config.TemplateEngineUtil;
 import com.codecool.shop.controller.EmailController;
 import com.codecool.shop.dao.OrderDao;
 import com.codecool.shop.dao.implementation.OrderDaoMem;
+import com.codecool.shop.model.OrderDetails;
 import com.codecool.shop.model.OrderItem;
 
 import org.json.JSONObject;
@@ -28,23 +29,26 @@ public class OrderConfirmationController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        OrderDetails orderDetails = new OrderDetails();
         OrderDao orderDataStore = OrderDaoMem.getInstance();
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
-        context.setVariable("orders", orderDataStore.getAll());
+        orderDetails.setOrders(orderDataStore.getAll());
         double total = 0;
         Currency currency = null;
-        for (OrderItem orderItem : orderDataStore.getAll()) {
+        for (OrderItem orderItem : orderDetails.getOrders()) {
             total += orderItem.subtotalPrice;
             currency = orderItem.getDefaultCurrency();
         }
+        orderDetails.setTotal(total);
+        orderDetails.setCurrency(currency);
 
         writeFileToJSON(orderDataStore);
-        String email = (String) req.getSession().getAttribute("user_email");
-        EmailController.sendEmail(email, orderDataStore, currency);
 
-        context.setVariable("total", total);
-        context.setVariable("currency", currency);
+        String email = (String) req.getSession().getAttribute("user_email");
+        EmailController.sendEmail(email, orderDetails, currency);
+
+        context.setVariable("orderDetails", orderDetails);
         engine.process("order-confirmation.html", context, resp.getWriter());
         clearCart(orderDataStore);
     }

@@ -1,6 +1,6 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.dao.OrderDao;
+import com.codecool.shop.model.OrderDetails;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
@@ -17,7 +17,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailController {
-    public static void sendEmail(String recipient, OrderDao orderDataStore, Currency currency) {
+    public static void sendEmail(String recipient, OrderDetails orderDetails, Currency currency) {
         ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
         resolver.setTemplateMode("HTML5");
         resolver.setPrefix("templates/");
@@ -25,9 +25,7 @@ public class EmailController {
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(resolver);
         final Context context = new Context();
-        context.setVariable("recipient", recipient);
-        context.setVariable("orders", orderDataStore.getAll());
-        context.setVariable("currency", currency);
+        context.setVariable("orderDetails", orderDetails);
 
         final String html = templateEngine.process("email", context);
 
