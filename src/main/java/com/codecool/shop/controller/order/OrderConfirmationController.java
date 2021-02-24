@@ -41,7 +41,7 @@ public class OrderConfirmationController extends HttpServlet {
 
         writeFileToJSON(orderDataStore);
         String email = (String) req.getSession().getAttribute("user_email");
-        sendEmail(email, orderDataStore, currency);
+        EmailController.sendEmail(email, orderDataStore, currency);
 
         context.setVariable("total", total);
         context.setVariable("currency", currency);
@@ -75,32 +75,5 @@ public class OrderConfirmationController extends HttpServlet {
 
     private void clearCart(OrderDao order){
         order.getAll().clear();
-    }
-
-    private void sendEmail(String recipient, OrderDao orderDataStore, Currency currency){
-        String emailBody = ("<h1>Emotional Support Pet Store</h1>" +
-                "<p><b>Thank you for your order, here are all your details:</b></p>" +
-                "<table style=\"width:50%; border: 1px solid black;\">\n" +
-                "  <tr style=\"border: 1px solid black;\">\n" +
-                "    <th style=\"border: 1px solid black;\">ID</th>\n" +
-                "    <th style=\"border: 1px solid black;\">Name</th>\n" +
-                "    <th style=\"border: 1px solid black;\">Quantity</th>\n" +
-                "    <th style=\"border: 1px solid black;\">Price</th>\n" +
-                "    <th style=\"border: 1px solid black;\">Subtotal</th>\n" +
-                "    <th style=\"border: 1px solid black;\">Description</th>\n" +
-                "  </tr>");
-        for (OrderItem orderItem : orderDataStore.getAll()) {
-            emailBody += "<tr>\n" +
-                    "    <td style=\"border: 1px solid black;\">" + orderItem.getId() + "</td>\n" +
-                    "    <td style=\"border: 1px solid black;\">" + orderItem.getName() + "</td>\n" +
-                    "    <td style=\"border: 1px solid black;\">" + orderItem.quantity + "</td>\n" +
-                    "    <td style=\"border: 1px solid black;\">" + orderItem.getPrice() + "</td>\n" +
-                    "    <td style=\"border: 1px solid black;\">" + orderItem.subtotalPrice + " " + currency + "</td>\n" +
-                    "    <td style=\"border: 1px solid black;\">" + orderItem.getDescription() + "</td>\n" +
-                    "  </tr>";
-        }
-        emailBody += "</table>";
-
-        EmailController.sendEmail(recipient, emailBody);
     }
 }

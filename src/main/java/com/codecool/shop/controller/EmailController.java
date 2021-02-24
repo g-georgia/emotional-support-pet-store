@@ -1,5 +1,11 @@
 package com.codecool.shop.controller;
 
+import com.codecool.shop.dao.OrderDao;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+
+import java.util.Currency;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -11,7 +17,20 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailController {
-    public static void sendEmail(String recipient, String emailBody) {
+    public static void sendEmail(String recipient, OrderDao orderDataStore, Currency currency) {
+        ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
+        resolver.setTemplateMode("HTML5");
+        resolver.setPrefix("templates/");
+        resolver.setSuffix(".html");
+        TemplateEngine templateEngine = new TemplateEngine();
+        templateEngine.setTemplateResolver(resolver);
+        final Context context = new Context();
+        context.setVariable("recipient", recipient);
+        context.setVariable("orders", orderDataStore.getAll());
+        context.setVariable("currency", currency);
+
+        final String html = templateEngine.process("email", context);
+
         String emailAddress = System.getProperty("email");
         String emailPassword = System.getProperty("password");
         // Recipient's email ID needs to be mentioned.
@@ -60,7 +79,7 @@ public class EmailController {
             message.setSubject("Thanks for your order!");
 
             // Send the actual HTML message.
-            message.setContent(emailBody, "text/html");
+            message.setContent(html, "text/html");
 
             System.out.println("sending...");
             // Send message
