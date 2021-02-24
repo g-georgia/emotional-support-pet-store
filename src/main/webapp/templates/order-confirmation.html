@@ -23,7 +23,7 @@
     </thead>
     <tbody>
     
-    <tr th:each="order,iterStat : ${orders}">
+    <tr th:each="order,iterStat : ${orderDetails.orders}">
         <th scope="row" th:text="${order.id}"></th>
         <td th:text="${order.name}"></td>
         <td class="right-aligned" th:text="${order.quantity}"></td>
@@ -37,7 +37,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td class="right-aligned"th:text="${#numbers.formatDecimal(total, 3, 'WHITESPACE', 2, 'POINT')} + ' ' + ${currency}"></td>
+        <td class="right-aligned"th:text="${#numbers.formatDecimal(orderDetails.total, 3, 'WHITESPACE', 2, 'POINT')} + ' ' + ${orderDetails.currency}"></td>
     </tr>
     </tbody>
 </table>
