@@ -74,7 +74,7 @@ public class EmailController {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
             // Set Subject: header field
-            message.setSubject("Thanks for your order!");
+            message.setSubject("Thanks for your order! #" + orderDetails.getOrderNumber());
 
             // Send the actual HTML message.
             message.setContent(html, "text/html");

@@ -3,14 +3,17 @@ package com.codecool.shop.model;
 
 import java.util.Currency;
 import java.util.List;
+import java.util.UUID;
 
 public class OrderDetails {
 
     private List<OrderItem> orders;
     private double total;
     private Currency currency;
+    private UUID orderNumber;
 
     public OrderDetails() {
+        this.orderNumber = UUID.randomUUID();
     }
 
     public List<OrderItem> getOrders() {
@@ -35,5 +38,9 @@ public class OrderDetails {
 
     public void setCurrency(Currency currency) {
         this.currency = currency;
+    }
+
+    public UUID getOrderNumber() {
+        return orderNumber;
     }
 }
