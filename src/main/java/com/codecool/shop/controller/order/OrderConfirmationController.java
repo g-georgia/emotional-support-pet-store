@@ -34,12 +34,8 @@ public class OrderConfirmationController extends HttpServlet {
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(req.getServletContext());
         WebContext context = new WebContext(req, resp, req.getServletContext());
         orderDetails.setOrders(orderDataStore.getAll());
-        double total = 0;
-        Currency currency = null;
-        for (OrderItem orderItem : orderDetails.getOrders()) {
-            total += orderItem.subtotalPrice;
-            currency = orderItem.getDefaultCurrency();
-        }
+        double total = calculateTotal(orderDetails);
+        Currency currency = orderDetails.getOrders().get(0).getDefaultCurrency();
         orderDetails.setTotal(total);
         orderDetails.setCurrency(currency);
 
@@ -79,5 +75,13 @@ public class OrderConfirmationController extends HttpServlet {
 
     private void clearCart(OrderDao order){
         order.getAll().clear();
+    }
+
+    private double calculateTotal(OrderDetails orderDetails) {
+        double total = 0;
+        for (OrderItem orderItem : orderDetails.getOrders()) {
+            total += orderItem.subtotalPrice;
+        }
+        return total;
     }
 }
